@@ -1,0 +1,3 @@
+[submodule "uiua-modules/uiua-lang/rayua"]
+	path = uiua-modules/uiua-lang/rayua
+	url = https://github.com/uiua-lang/rayua
