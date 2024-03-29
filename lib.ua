@@ -3,7 +3,9 @@ RC ← ⊡⌊×⚂⧻.
 # Balanced random choice
 BRC ← RC▽=RC◴.≡(⊢⇌).
 Perms ← |1 ⟨¤[]◌|°¤⊢⊞⍜⊙↻⊂⊙⊓⇡Perms,⊙-,1⟩±.
-NKings ← memo(▽≡/×≠1⌵≡(≡/-◫)2.Perms)
+LoadNKings ↚ ↯⊟∞:°⋯↯⊟∞⧻∩⋯⟜:°⊂&frab$"cache/_"
+NKingsImpl ↚ ▽≡/×≠1⌵≡(≡/-◫)2.Perms
+NKings ← memo⍣LoadNKings NKingsImpl
 Adjs ← ⊂¯.⊟⇌.0_1
 
 # Raw progress bar
@@ -14,10 +16,7 @@ PB ← $"[_]"⬚@\s↙⟜RPB
 GenSol ← ⬚0≡°⊚ RC NKings
 EncSol ← ⊂⊂:@-∩°⋕⧻⟜⊗°¤≡⊚⊙NKings⟜⧻
 LabelSol ← ⍜⊚(▽+1⇡⧻.)
-Solve ← (
-  ≡⬚0≡°⊚NKings⧻.
-  ⊚≡/×=1≡⊕/+¤-1:
-)
+Solve ← ⊚/×=1↘1⍉⬚0≡°⊚⍜⍉≡⊏NKings⧻.
 Solvable ← =1⧻Solve
 GrowPuz ← (
   RC.⊚±.
@@ -114,10 +113,6 @@ GenSolvable ← (
 # Recursive superposition-collapse exhaustive search with
 # optimized solvability and contiguous adjacency checking
 IncGenPuzRec ↚ |3.3 (
-  # ∵◇⊢×=1∵◇⧻..
-  # &pf $"\x1b[2K\runfilled: _" /+♭=0.
-  # ⍤"not solvable"Solvable
-
   # Accessibility check
   °□∧⍜⊙◇⊡(⍚▽≠,)⟜⍚(
     ↥0-⊓≠×1:2∵◇⊃⧻/↥=
@@ -134,32 +129,21 @@ IncGenPuzRec ↚ |3.3 (
 
     # &pf $"\x1b[2K\runfilled: _" /+♭=0.
     # &pf $"\x1b[2K\rsearch size: _" ⧻,
-    ≡⊕/+¤-1⊙.
-    =1/+≡/×=1.
-    ⍤"not solvable"
 
-    ▽≡/×<2
+    ⬚0≡°⊚⍜⍉≡⊏⊏:NKings⧻,,
+    =1/+∩/×⊓=<1,2↘1⍉
+    ▽⍤"not solvable"
   )
-
-  # ∵◇⊢×=1∵◇⧻..
-  # &p&pf$"\x1b[_A\r\x1b[J"+5⧻.
 
   ∵◇⧻.
 
-  ∵◇⊢×=1,,
-  &p&pf$"\x1b[_A\r\x1b[J"+5⧻.
-
-  # &p.&pf$"\x1b[_A\r\x1b[J"+5⧻.
-  .
-  ⊙.××-1..:/+♭⟜⧻-1
+  &p.&pf$"\x1b[_A\r\x1b[J"+5⧻.
+  ⊙.××-1..:/+♭⟜⧻-1.
   &p $"\x1b[2K\r_" PB 20 ×.¬÷
   &p $"\x1b[2K\runcertainty: _"
   &p $"\x1b[2K\rsearch size: _" ⧻:⊙,
-  # ∵◇⊢×=1∵◇⧻.,
-  # &p $"\x1b[2K\runfilled: _" /+♭=0
   &pf $"\x1b[2K\rrecursion depth: _" :⊙:⊙⊙⊃:⋅(+1)
-  # &p $"search size: _" ⧻:⊙,
-  # &p $"recursion depth: _" :⊙:⊙⊙⊃:⋅(+1)
+
   ¬/×♭=1
   ⍥(
     ∵≍⍚¤+1⇡⧻⟜¤.
@@ -180,7 +164,7 @@ IncGenPuzRec ↚ |3.3 (
 IncGenPuz ← (
   :¤¤+1⇡⧻.
   ≡⍚⟨⋅∘|¤⟩±.
-  :≡⬚0≡°⊚NKings⧻.
+  :⇡⧻NKings⧻.
   &p∵⋅0.
   &p▽2@\n
   ⊙⊙0
