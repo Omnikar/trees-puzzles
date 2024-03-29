@@ -1,20 +1,18 @@
 # Random choice
 RC ← ⊡⌊×⚂⧻.
-# Balanced random choice
-BRC ← RC▽=RC◴.≡(⊢⇌).
+# Permutations
 Perms ← |1 ⟨¤[]◌|°¤⊢⊞⍜⊙↻⊂⊙⊓⇡Perms,⊙-,1⟩±.
 LoadNKings ↚ ↯⊟∞:°⋯↯⊟∞⧻∩⋯⟜:°⊂&frab$"cache/_"
 NKingsImpl ↚ ▽≡/×≠1⌵≡(≡/-◫)2.Perms
+# Number of ways to arrange N non attacking kings
+# on an NxN board with 1 per row and 1 per column
 NKings ← memo⍣LoadNKings NKingsImpl
 Adjs ← ⊂¯.⊟⇌.0_1
 
-# Raw progress bar
-RPB ← ⊂▽:@█:⊡⌊×⧻⟜:"▏▎▍▌▋▊▉":⟜-⌊.×
-# Surrounded progress bar
-PB ← $"[_]"⬚@\s↙⟜RPB
+RawProgressBar ← ⊂▽:@█:⊡⌊×⧻⟜:"▏▎▍▌▋▊▉":⟜-⌊.×
+ProgressBar ← $"[_]"⬚@\s↙⟜RawProgressBar
 
 GenSol ← ⬚0≡°⊚ RC NKings
-EncSol ← ⊂⊂:@-∩°⋕⧻⟜⊗°¤≡⊚⊙NKings⟜⧻
 LabelSol ← ⍜⊚(▽+1⇡⧻.)
 Solve ← ⊚/×=1↘1⍉⬚0≡°⊚⍜⍉≡⊏NKings⧻.
 Solvable ← =1⧻Solve
@@ -29,85 +27,6 @@ GrowPuz ← (
 PreGrow ← (
   =⟜:+1⇡⧻⟜¤
   /↥×≡GrowPuz
-)
-# More balanced region growth choices
-AltGrowPuz ← (
-  ⊚±.
-  RC⊚=⌈×⚂⧻.,
-  ⊙⊙:⊃⊙⧻⊡⊙,
-  ⊙.:+Adjs¤
-  ▽≡/××⊓≥<0,
-  ▽¬∊⟜:
-  ⍜⊡◌⊙:RC
-  ⍤"not solvable"Solvable.
-)
-# Optimized solvability checking
-AltAltGrowPuz ← (
-  ⊚±.
-  RC⊚=⌈×⚂⧻.,
-  ⊙⊙:⊃⊙⧻⊡⊙,
-  ⊙.:+Adjs¤
-  ▽≡/××⊓≥<0,
-  ▽¬∊⟜:
-  ⍜⊡◌⊙:RC
-  ¤-1,,
-  ≡⊕/+
-  =1/+≡/×=1.
-  ⍤"not solvable"
-  ⊙▽:≡/×≠2
-  &pf$"\x1b[2K\rsearch size: _"⧻,
-)
-# Optimized solvability checking and targeted growth
-AAAGrowPuz ← (
-  +1⇡⧻⟜¤.
-  /◇⊂⍚(≡⊟≡□°¤⊞+Adjs⊚=⊃⊙∘□)
-  ▽≡◇/××⊓≤>,0≡⊢,⧻,◴
-  ▽¬±⊡≡°□≡⊢,,
-
-  &pf "\rs1"
-
-  ⊃⋅⊙⟜∘⊙⊙∘
-  ▽¬≡/×≡⊕/+¤-1
-  .[]:⊏⍏∵⋅⚂.
-  ⍣(
-    ⍤"oopsie daisy"⁅⚂
-    ⍢(
-      :⊙:⊙⊙,⊙:°⊂:◌◌
-      ⊃(+1⊚=1⊕/+-1|⊚×¬±)
-    | ¬±⧻◌
-    )
-  )⊙⊙⊙⊙∘
-
-  &pf "\rs2"
-
-  :⊙(:°⊟⍉,)∩¤
-  ×∩≡◇∊
-  ⍣(BRC⊙◌▽)⋅BRC
-  ⍜⊡◌⊙:°{⊙∘}
-
-  &pf "\rs3"
-
-  ¤-1,,
-  ≡⊕/+
-  =1/+≡/×=1.
-  ⍤"not solvable"
-  ⊙▽:≡/×≠2
-  &pf$"\x1b[2K\r   search size: _"⧻,
-)
-# GenPuz ← ⍢⍣GrowPuz∘(=0/↧♭)
-GenPuz ← ⍢⍣AltAltGrowPuz∘(=0/↧♭)
-
-# Rudimentary "try again until something works"
-GenSolvable ← (
-  # 5 # Puzzle size
-  GenSol
-  # &p EncSol.
-  # ⟜EncSol
-  ⟜(⊗°¤≡⊚⊙NKings⟜⧻)
-  LabelSol
-  :1 # Attempt counter
-  &p "" ⊙◌⍢(GenPuz.⊙+:1◌|¬&pf$"\rCheck took _"⍜nowSolvable) GenPuz.
-  ⊙(&p $"_ attempts")
 )
 
 # Recursive superposition-collapse exhaustive search with
@@ -127,9 +46,7 @@ IncGenPuzRec ↚ |3.3 (
     =∩⧻,⊜⊢..
     ⍤"not contiguous"
 
-    # &pf $"\x1b[2K\runfilled: _" /+♭=0.
-    # &pf $"\x1b[2K\rsearch size: _" ⧻,
-
+    # Solvability check and filtering
     ⬚0≡°⊚⍜⍉≡⊏⊏:NKings⧻,,
     =1/+∩/×⊓=<1,2↘1⍉
     ▽⍤"not solvable"
@@ -139,12 +56,13 @@ IncGenPuzRec ↚ |3.3 (
 
   &p.&pf$"\x1b[_A\r\x1b[J"+5⧻.
   ⊙.××-1..:/+♭⟜⧻-1.
-  &p $"\x1b[2K\r_" PB 20 ×.¬÷
+  &p $"\x1b[2K\r_" ProgressBar 20 ×.¬÷
   &p $"\x1b[2K\runcertainty: _"
   &p $"\x1b[2K\rsearch size: _" ⧻:⊙,
   &pf $"\x1b[2K\rrecursion depth: _" :⊙:⊙⊙⊃:⋅(+1)
 
   ¬/×♭=1
+  # Runs once iff the puzzle is incomplete
   ⍥(
     ∵≍⍚¤+1⇡⧻⟜¤.
     ⍚(◴°¤≡(+Adjs¤)⊚)
