@@ -1,4 +1,13 @@
-Generator for [trees logic puzzles](https://www.sporcle.com/playlists/SporcleEXP/trees-logic-puzzles)
+Generator for [trees logic puzzles](https://www.sporcle.com/playlists/SporcleEXP/trees-logic-puzzles).
+
+Requires [Uiua](https://uiua.org) v0.10.
+
+## Example usage
+Generate an 8x8 puzzle and play it with the app.
+```bash
+uiua gen.ua 8
+uiua app.ua
+```
 
 ## Generate
 Generates an NxN puzzle and writes it to `file`.
