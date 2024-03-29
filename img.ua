@@ -10,5 +10,5 @@ MkImg ← (
 )
 
 &fras ⍣⊡"out.csv"1&args
-⋕°csv▽⍜⇌\×¬⦷"\n\n".
-&ims MkImg
+MkImg⋕°csv▽⍜⇌\×¬⦷"\n\n".
+⍣(&fwa⊡2&args&ime"png")&ims

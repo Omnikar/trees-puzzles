@@ -29,8 +29,10 @@ In the app, left/right click on squares to cycle between eliminated
 (`-`) and tree (`T`). Press space to reroll the colorscheme.
 
 ## Generate an image
-Outputs an image of the puzzle in `file` to the terminal.
-- `file` defaults to `out.csv`
+If `img` is provided, outputs a png of the puzzle in `puz` to the filename `img`.
+
+Otherwise, outputs an image of the puzzle in `puz` to the terminal.
+- `puz` defaults to `out.csv`
 ```bash
-uiua img.ua [file]
+uiua img.ua [puz] [img]
 ```
