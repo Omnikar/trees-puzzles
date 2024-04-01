@@ -1,4 +1,4 @@
-Upscale ← °⍉▽▽⧻⟜:⍉▽▽⧻,⟜: 40
+Upscale ← ⍉◌⍥⟜(⍉▽▽⧻,)2 40
 MkImg ← (
   # Make colors
   ⊃⊏⧻-1:∵⋅⚂↯⊟,3⧻.
