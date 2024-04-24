@@ -1,7 +1,7 @@
 # Random choice
 RC ← ⊡⌊×⚂⧻.
 # Permutations
-Perms ← |1 ⟨¤[]◌|°¤⊢⊞⍜⊙↻⊂⊙⊓⇡Perms,⊙-,1⟩±.
+Perms ← |1 ⟨¤[]◌|/⊂⊢⊞⍜⊙↻⊂⊙⊓⇡Perms,⊙-,1⟩±.
 LoadNKings ↚ ↯⊟∞:°⋯↯⊟∞⧻∩⋯⟜:°⊂&frab$"cache/_"
 NKingsImpl ↚ ▽≡/×≠1⌵≡(≡/-◫)2.Perms
 # Number of ways to arrange N non attacking kings
@@ -65,7 +65,7 @@ IncGenPuzRec ↚ |3.3 (
   # Runs once iff the puzzle is incomplete
   ⍥(
     ∵≍⍚¤+1⇡⧻⟜¤.
-    ⍚(◴°¤≡(+Adjs¤)⊚)
+    ⍚(◴/⊂≡(+Adjs¤)⊚)
     ⍚(▽≡/×)×⊓≤>,0,⧻,
     :>1⍚≡◇⧻.⍚⊡,¤,
     ⍚▽×⍚≡◇∊+1⇡⧻.

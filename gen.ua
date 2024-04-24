@@ -5,7 +5,7 @@
 ⍣(⋕⊡1)5&args
 
 GenSol
-⟜(⊗°¤≡⊚⊙NKings⟜⧻)
+⟜(⊗/⊂≡⊚⊙NKings⟜⧻)
 LabelSol
 
 &p "pregrowing"
