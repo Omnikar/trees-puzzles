@@ -1,7 +1,7 @@
 # Random choice
 RC ← ⊡⌊×⚂⧻.
 # Permutations
-Perms ← |1 ⟨¤[]◌|/⊂⊢⊞⍜⊙↻⊂⊙⊓⇡Perms,⊙-,1⟩±.
+Perms ← ☇1⍉∧(≡↻⇡⟜↯+1⟜⊂)↘1⇡:¤¤0
 LoadNKings ↚ ↯⊟∞:°⋯↯⊟∞⧻∩⋯⟜:°⊂&frab$"cache/_"
 NKingsImpl ↚ ▽≡/×≠1⌵≡(≡/-◫)2.Perms
 # Number of ways to arrange N non attacking kings
